@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>原神フリマ掲示板</title>
+<style>
+  /* CSSスタイルを追加 */
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5; /* 背景色を設定 */
+  }
+  h1 {
+    text-align: center; /* タイトルを中央揃え */
+    color: #333; /* タイトルの色を設定 */
+  }
+  h2 {
+    color: #333; /* サブタイトルの色を設定 */
+  }
+  #login-form, #message-board, #message-form {
+    background-color: #fff; /* フォームやメッセージボードの背景色を設定 */
+    padding: 20px; /* 内側の余白を追加 */
+    border-radius: 5px; /* 角丸を追加 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  }
+  input[type="text"], input[type="password"], textarea, button, input[type="file"] {
+    width: 100%; /* 入力フィールドやボタンを横幅いっぱいに広げる */
+    padding: 10px; /* 内側の余白を追加 */
+    margin-bottom: 10px; /* 下部に余白を追加 */
+    border: 1px solid #ccc; /* 枠線を追加 */
+    border-radius: 3px; /* 角丸を追加 */
+    box-sizing: border-box; /* ボックスモデルを設定 */
+  }
+  button {
+    background-color: #4CAF50; /* ボタンの背景色を設定 */
+    color: white; /* ボタンのテキスト色を設定 */
+    border: none; /* 枠線をなくす */
+    cursor: pointer; /* ホバー時のカーソルを設定 */
+  }
+  button:hover {
+    background-color: #45a049; /* ホバー時の背景色を設定 */
+  }
+  #message-board {
+    border: 1px solid #ddd; /* 枠線の色を設定 */
+  }
+</style>
+</head>
+<body>
+
+<script>
+  // JavaScriptを追加
+  document.addEventListener("DOMContentLoaded", function() {
+    // ログインフォームの要素を取得
+    var loginForm = document.getElementById('login-form');
+    // メッセージボードの要素を取得
+    var messageBoard = document.getElementById('message-board');
+    // 新しいメッセージを投稿するフォームの要素を取得
+    var messageForm = document.getElementById('message-form');
+
+    // ログインフォームが送信されたときの処理
+    document.getElementById('login').addEventListener('submit', function(event) {
+      event.preventDefault(); // フォームのデフォルトの送信を防止
+
+      // フォームから値を取得
+      var username = document.getElementById('login-username').value;
+      var password = document.getElementById('login-password').value;
+
+      // JSON形式のログイン情報
+      var loginData = [
+          {
+    "username": "dB8M",
+    "password": "OgPw" 
+  },
+  {
+    "username": "lz5p",
+    "password": "LmyE"
+  },
+  {
+    "username": "l1Af",
+    "password": "p5cr"
+  },
+  {
+    "username": "FHOU",
+    "password": "egJl"
+  },
+  {
+    "username": "LUvV",
+    "password": "QNpt"
+  },
+  {
+    "username": "mZjh",
+    "password": "at8S"
+  },
+  {
+    "username": "w30v",
+    "password": "KioY"
+  },
+  {
+    "username": "51lS",
+    "password": "iKTr"
+  },
+  {
+    "username": "KVST",
+    "password": "Ts5C"
+  },
+  {
+    "username": "BWNl",
+    "password": "MxOc"
+  },
+  {
+    "username": "ATYT",
+    "password": "6Kjn"
+  },
+  {
+    "username": "p3Fx",
+    "password": "vAPO"
+  },
+  {
+    "username": "AiHB",
+    "password": "THai"
+  },
+  {
+    "username": "dYEJ",
+    "password": "wj3d"
+  },
+  {
+    "username": "O61q",
+    "password": "TvCJ"
+  },
+  {
+    "username": "GYdl",
+    "password": "UqFy"
+  },
+  {
+    "username": "t67I",
+    "password": "6zV6"
+  },
+  {
+    "username": "1sTD",
+    "password": "nEra"
+  },
+  {
+    "username": "RR6J",
+    "password": "3uQh"
+  },
+  {
+    "username": "mp8f",
+    "password": "9sZT"
+  },
+  {
+    "username": "G27J",
+    "password": "7X7P"
+  },
+  {
+    "username": "beZz",
+    "password": "Nb2B"
+  },
+  {
+    "username": "SYxi",
+    "password": "Vtz6"
+  },
+  {
+    "username": "EZGe",
+    "password": "FNq5"
+  },
+  {
+    "username": "69Kr",
+    "password": "876T"
+  },
+  {
+    "username": "XgXp",
+    "password": "hmsB"
+  },
+  {
+    "username": "4BTi",
+    "password": "u8mk"
+  },
+  {
+    "username": "J10r",
+    "password": "zxm8"
+  },
+  {
+    "username": "2NXT",
+    "password": "EFWl"
+  },
+  {
+    "username": "Pl1u",
+    "password": "Jp4b"
+  },
+  {
+    "username": "TkXa",
+    "password": "m0DW"
+  },
+  {
+    "username": "6vpl",
+    "password": "RYWe"
+  },
+  {
+    "username": "ydk4",
+    "password": "D5a5"
+  },
+  {
+    "username": "wf7a",
+    "password": "tiAa"
+  },
+  {
+    "username": "oLGR",
+    "password": "Wl7Z"
+  },
+  {
+    "username": "8NYC",
+    "password": "sDw6"
+  },
+  {
+    "username": "IyUd",
+    "password": "aSBk"
+  },
+  {
+    "username": "Tkjp",
+    "password": "Bkw6"
+  },
+  {
+    "username": "MEIy",
+    "password": "Ln6N"
+  },
+  {
+    "username": "UisW",
+    "password": "gfox"
+  },
+  {
+    "username": "1oSH",
+    "password": "j2VT"
+  },
+  {
+    "username": "TUuf",
+    "password": "0701"
+  },
+  {
+    "username": "CEwF",
+    "password": "N1LK"
+  },
+  {
+    "username": "tT8a",
+    "password": "U7Tg"
+  },
+  {
+    "username": "R2TN",
+    "password": "rOTo"
+  },
+  {
+    "username": "fJOB",
+    "password": "XrKr"
+  },
+  {
+    "username": "eSVT",
+    "password": "uOJ4"
+  },
+  {
+    "username": "dm3S",
+    "password": "eZ8Z"
+  },
+  {
+    "username": "yJh0",
+    "password": "fmVi"
+  },
+  {
+    "username": "vIgE",
+    "password": "DXk7"
+  },
+  {
+    "username": "9b8q",
+    "password": "trIX"
+  },
+  {
+    "username": "wLG2",
+    "password": "5nh0"
+  },
+  {
+    "username": "4sLe",
+    "password": "Hw4U"
+  },
+  {
+    "username": "UEl1",
+    "password": "7O1b"
+  },
+  {
+    "username": "QIx6",
+    "password": "EZ68"
+  },
+  {
+    "username": "1qny",
+    "password": "XrHy"
+  },
+  {
+    "username": "YzhL",
+    "password": "xmtl"
+  },
+  {
+    "username": "gqHy",
+    "password": "Vn7Q"
+  },
+  {
+    "username": "82B6",
+    "password": "udh9"
+  },
+  {
+    "username": "i1S2",
+    "password": "g5df"
+  },
+  {
+    "username": "t7fO",
+    "password": "iul2"
+  },
+  {
+    "username": "CaW6",
+    "password": "EEzp"
+  },
+  {
+    "username": "54HB",
+    "password": "HOGE"
+  },
+  {
+    "username": "xxj3",
+    "password": "R2Kx"
+  },
+  {
+    "username": "Vp0M",
+    "password": "Jhz2"
+  },
+  {
+    "username": "LkZN",
+    "password": "Oohe"
+  },
+  {
+    "username": "hjDy",
+    "password": "oThj"
+  },
+  {
+    "username": "pSTg",
+    "password": "LNnm"
+  },
+  {
+    "username": "ofek",
+    "password": "jRxI"
+  },
+  {
+    "username": "Os3R",
+    "password": "LrmH"
+  },
+  
+  {
+    "username": "clTf",
+    "password": "IpwB"
+  },
+  {
+    "username": "lQVL",
+    "password": "09nM"
+  },
+  {
+    "username": "uMy1",
+    "password": "dupO"
+  },
+  {
+    "username": "FEb0",
+    "password": "cTEU"
+  },
+  {
+    "username": "TdO8",
+    "password": "9EfH"
+  },
+  {
+    "username": "ZmQv",
+    "password": "UInJ"
+  },
+  {
+    "username": "vE1c",
+    "password": "7ZLj"
+  },
+  {
+    "username": "MTn3",
+    "password": "7Z2d"
+  },
+  {
+    "username": "3IYq",
+    "password": "0OHe"
+  },
+  {
+    "username": "hr5E",
+    "password": "6TZK"
+  },
+  {
+    "username": "xWrv",
+    "password": "esxB"
+  },
+  {
+    "username": "wGW2",
+    "password": "S9BC"
+  },
+  {
+    "username": "fhRm",
+    "password": "wEFj"
+  },
+  {
+    "username": "VHWa",
+    "password": "qKs2"
+  },
+  {
+    "username": "d9mF",
+    "password": "0rZe"
+  },
+  {
+    "username": "6xlU",
+    "password": "5rsR"
+  },
+  {
+    "username": "X3EG",
+    "password": "6efk"
+  },
+  {
+    "username": "AXus",
+    "password": "tduw"
+  },
+  {
+    "username": "E8tN",
+    "password": "jlb0"
+  },
+  {
+    "username": "dI33",
+    "password": "hsT9"
+  },
+  {
+    "username": "FtVo",
+    "password": "QM3h"
+  },
+  {
+    "username": "Pibn",
+    "password": "11mR"
+  },
+  {
+    "username": "6348",
+    "password": "sZNm"
+  },
+  {
+    "username": "TleL",
+    "password": "53qv"
+  },
+  {
+    "username": "Xj1t",
+    "password": "VNEa"
+  },
+  {
+    "username": "TAM2",
+    "password": "4ash"
+  },
+  {
+    "username": "CO3h",
+    "password": "yndd"
+  },
+  {
+    "username": "C41e",
+    "password": "eIBO"
+  },
+  {
+    "username": "nZAT",
+    "password": "v4St"
+  },
+  {
+    "username": "96Xv",
+    "password": "BsH9"
+  },
+  {
+    "username": "pCt2",
+    "password": "mpTo"
+  },
+  {
+    "username": "JiPf",
+    "password": "Lahk"
+  },
+  {
+    "username": "YYLZ",
+    "password": "4wqp"
+  },
+  {
+    "username": "RJ1u",
+    "password": "urXC"
+  },
+  {
+    "username": "Blts",
+    "password": "6WzH"
+  },
+  {
+    "username": "Wx6B",
+    "password": "4JZK"
+  },
+  {
+    "username": "IYBo",
+    "password": "75Vo"
+  },
+  {
+    "username": "aQIm",
+    "password": "gdZo"
+  },
+  {
+    "username": "u7UR",
+    "password": "Vgsp"
+  },
+  {
+    "username": "opzx",
+    "password": "9zvp"
+  },
+  {
+    "username": "WpIp",
+    "password": "jrsB"
+  },
+  {
+    "username": "rybN",
+    "password": "b2DI"
+  },
+  {
+    "username": "niJQ",
+    "password": "SQGm"
+  },
+  {
+    "username": "tYz5",
+    "password": "GAZZ"
+  },
+  {
+    "username": "6aIL",
+    "password": "P4sb"
+  },
+  {
+    "username": "vMrK",
+    "password": "Ueip"
+  },
+  {
+    "username": "iObW",
+    "password": "p8ru"
+  },
+  {
+    "username": "ubLv",
+    "password": "HlVq"
+  },
+  {
+    "username": "jEQR",
+    "password": "jaYQ"
+  },
+  {
+    "username": "dx0C",
+    "password": "kQx8"
+  },
+  {
+    "username": "l2vs",
+    "password": "RDrk"
+  },
+  {
+    "username": "M6Pg",
+    "password": "ga0L"
+  },
+  {
+    "username": "PwzR",
+    "password": "rmmc"
+  }]
+      // ログイン情報を検証
+      var authenticated = loginData.some(function(user) {
+        return user.username === username && user.password === password;
+      });
+
+      if (authenticated) {
+        alert('ログイン成功');
+        // メッセージボードを表示
+        messageBoard.style.display = 'block';
+        // メッセージ投稿フォームを表示
+        messageForm.style.display = 'block';
+        // ログインフォームを非表示にする
+        loginForm.style.display = 'none';
+      } else {
+        alert('ユーザー名またはパスワードが正しくありません');
+      }
+    });
+
+    // メッセージを投稿する処理
+    messageForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // フォームのデフォルトの送信を防止
+
+      // フォームから値を取得
+      var username = document.getElementById('username').value;
+      var message = document.getElementById('message').value;
+      var image = document.getElementById('image').files[0]; // アップロードされた画像
+
+      // メッセージを作成
+      var newMessage = document.createElement('div');
+      var messageContent = '<strong>' + username + ':</strong> ' + message;
+      newMessage.innerHTML = '<p>' + messageContent + '</p>';
+
+      // 画像が選択されている場合は表示に追加
+      if (image) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          var imageElement = document.createElement('img');
+          imageElement.src = e.target.result;
+          imageElement.style.maxWidth = '100%'; // 画像の幅を制限
+          newMessage.appendChild(imageElement);
+        }
+        reader.readAsDataURL(image);
+      }
+
+      // メッセージを表示エリアに追加
+      messageBoard.appendChild(newMessage);
+
+      // フォームをクリア
+      messageForm.reset();
+    });
+  });
+</script>
+
+<h1>原神フリマ掲示板</h1>
+
+<!-- ログインフォーム -->
+<div id="login-form">
+  <h2>ログイン</h2>
+  <form id="login">
+    <label for="login-username">ユーザー名:</label>
+    <input type="text" id="login-username" name="login-username" required><br>
+    <label for="login-password">パスワード:</label>
+    <input type="password" id="login-password" name="login-password" required><br>
+    <button type="submit">ログイン</button>
+  </form>
+</div>
+
+<div id="message-board" style="display: none;">
+  <!-- メッセージの表示エリア -->
+</div>
+
+<h2>新しいメッセージを投稿する</h2>
+<form id="message-form" style="display: none;">
+  <label for="username">ユーザー名:</label>
+  <input type="text" id="username" name="username" required><br>
+
+  <label for="message">メッセージ:</label><br>
+  <textarea id="message" name="message" rows="4" required></textarea><br>
+
+  <!-- 画像アップロードフィールドを追加 -->
+  <label for="image">画像をアップロード:</label><br>
+  <input type="file" id="image" name="image"><br>
+
+  <button type="submit">投稿する</button>
+</form>
+
+</body>
+</html>
